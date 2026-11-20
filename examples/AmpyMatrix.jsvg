@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ampy="https://ampybios.example/ns/jsvg/1" viewBox="0 0 640 360" width="640" height="360" ampy:version="1.0">
+<title>AmpyStudio — JSVG example</title><desc>Alien HMI glyph and notification panel. Embedded project data.</desc>
+<metadata id="ampy-project"><ampy:project media-type="application/json"><![CDATA[{
+  "format": "AmpyJSVG",
+  "version": "1.0",
+  "canvas": {
+    "width": 640,
+    "height": 360
+  },
+  "objects": [
+    {
+      "id": "glyph01",
+      "type": "glyph",
+      "geometry": {
+        "radius": 8,
+        "strokeWidth": 3,
+        "mode": "fillet",
+        "paths": {
+          "standby": "M0 -42 Q4 -42 8 -34 L40 22 Q44 30 35 30 H-35 Q-44 30 -40 22 L-8 -34 Q-4 -42 0 -42 Z",
+          "active": "M0 -42 Q8 -42 16 -36 L36 -20 Q44 -16 44 -8 V8 Q44 16 36 20 L16 36 Q8 42 0 42 Q-8 42 -16 36 L-36 20 Q-44 16 -44 8 V-8 Q-44 -16 -36 -20 L-16 -36 Q-8 -42 0 -42 Z"
+        }
+      },
+      "transform": {
+        "x": 320,
+        "y": 112,
+        "rotation": 0
+      },
+      "material": {
+        "stroke": "#d9c58d",
+        "fill": "#203a32",
+        "glow": 3
+      },
+      "extrusion": {
+        "depth": 24
+      },
+      "physics": {
+        "mass": 1,
+        "stiffness": 120,
+        "damping": 18
+      },
+      "animation": {
+        "type": "morph",
+        "durationMs": 850,
+        "easing": "smooth",
+        "from": "standby",
+        "to": "active"
+      },
+      "tag": {
+        "name": "DB_Core.Running",
+        "type": "Bool",
+        "access": "read",
+        "simulation": true
+      }
+    },
+    {
+      "id": "message01",
+      "type": "popup",
+      "geometry": {
+        "radius": 14
+      },
+      "animation": {
+        "type": "genie",
+        "source": "glyph01",
+        "durationMs": 850
+      },
+      "tag": {
+        "name": "DB_Alarm.Warning",
+        "type": "Bool",
+        "access": "read",
+        "simulation": true
+      }
+    }
+  ],
+  "connections": [
+    {
+      "source": "glyph01",
+      "target": "message01",
+      "type": "bezier"
+    }
+  ],
+  "events": [
+    {
+      "trigger": "click",
+      "source": "glyph01",
+      "actions": [
+        {
+          "type": "toggleMorph",
+          "target": "glyph01"
+        },
+        {
+          "type": "togglePopup",
+          "target": "message01"
+        }
+      ]
+    },
+    {
+      "trigger": "tagChange",
+      "tag": "DB_Alarm.Warning",
+      "equals": true,
+      "actions": [
+        {
+          "type": "showPopup",
+          "target": "message01"
+        }
+      ]
+    }
+  ],
+  "timeline": {
+    "durationMs": 850,
+    "tracks": [
+      {
+        "target": "glyph01",
+        "property": "morphProgress",
+        "keyframes": [
+          {
+            "timeMs": 0,
+            "value": 0
+          },
+          {
+            "timeMs": 850,
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  "runtime": {
+    "mode": "simulation",
+    "externalDependencies": []
+  }
+}]]></ampy:project></metadata>
+<rect width="640" height="360" fill="#091316"/>
+<g fill="none" stroke="#38594f"><circle cx="320" cy="112" r="79"/><circle cx="320" cy="112" r="65" stroke-dasharray="2 6"/><path d="M320 164V209"/></g>
+<g id="glyph01" transform="translate(320 112)" stroke="#d9c58d" fill="#203a32" stroke-width="3"><path id="glyph-shape" d="M0 -42 Q4 -42 8 -34 L40 22 Q44 30 35 30 H-35 Q-44 30 -40 22 L-8 -34 Q-4 -42 0 -42 Z"/><path d="M0 -14V16" fill="none" stroke-linecap="round"/></g>
+<g id="message01"><rect x="110" y="209" width="420" height="104" rx="14" fill="#182f28" stroke="#80aa91"/><text x="135" y="240" fill="#d9c58d" font-family="monospace" font-size="16">MATRIX ONLINE</text><text x="135" y="263" fill="#a2c9b1" font-family="monospace" font-size="12">JSVG / Embedded semantic project</text><rect x="135" y="282" width="370" height="5" fill="#35554a"/><rect x="135" y="282" width="314" height="5" fill="#a2c9b1"/></g>
+<text x="20" y="25" fill="#a2c9b1" font-family="monospace" font-size="12">AMPY JSVG / 1.0</text></svg>
