@@ -1,0 +1,3 @@
+# AmpyStudio Android
+Native offline WebView host for the same editor as the web version. Minimum API 28, compile/target API 36; Java 17, AGP 8.11.1, Gradle 8.13. Open android/ with Android Studio or run gradle :app:assembleDebug from android/. APK: app/build/outputs/apk/debug/app-debug.apk.
+No network permission. File chooser uses Android Storage Access Framework; JSVG/SVG save uses the system document picker. The WebView only serves the bundled editor from a restricted local HTTPS origin. Portrait touch panels, safe-area insets, and a preferred high-refresh display mode are included. 120 Hz actual performance is not yet measured. No PLC connection. The Android build is a debug prototype; verify on device before production use.
