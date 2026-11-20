@@ -21,3 +21,6 @@ JavaScript syntax checked with Node. Chromium (Playwright, inline copy of the HT
 ## Android / Pixel 7 Pro
 
 The `android/` project packages the existing standalone editor in an offline native WebView, with portrait touch tabs, Android document open/save, API 36 targeting and a high-refresh display preference. See [Android instructions](android/README.md). Debug APK builds are configured in [GitHub Actions](https://github.com/Frak89/AmpyStudio/actions/workflows/android.yml); download the `AmpyStudio-Android` artifact after a successful run. Device tests and performance measurements are pending.
+
+## AmpyNode (1.1.0)
+Open AmpyNode above the canvas. Add event, condition and action nodes; select a node to edit properties; use source, port and destination to connect them. The demo warning event sets a tag and triggers an alarm animation; applying a simulated DB_Core.Flow tag above 80 selects dual flow, otherwise route A. Logic, links and initial tags are embedded in JSVG. Runtime overrides and tag values are simulation-only. Execution stops at a repeated node or 256 steps. No arbitrary imported code or live PLC connection. Android panel available via AmpyNode button. This visual graph is schematic, with automatic layout, not a free-position node editor yet.
