@@ -17,3 +17,7 @@ This is a first integration, not a complete production HMI designer. Motion pres
 
 ## Smoke testing
 JavaScript syntax checked with Node. Chromium (Playwright, inline copy of the HTML/CSS/JS) verified initial rendering, 64 glyphs, 7 example objects, preview, route switch, fault blocking, duplicate/undo, JSVG download and reimport. Native file:// navigation was blocked by the test environment policy, so tested with set_content. No independent verification of every motion preset, mobile device compatibility, 120Hz performance or safety behavior.
+
+## Android / Pixel 7 Pro
+
+The `android/` project packages the existing standalone editor in an offline native WebView, with portrait touch tabs, Android document open/save, API 36 targeting and a high-refresh display preference. See [Android instructions](android/README.md). Debug APK builds are configured in [GitHub Actions](https://github.com/Frak89/AmpyStudio/actions/workflows/android.yml); download the `AmpyStudio-Android` artifact after a successful run. Device tests and performance measurements are pending.
