@@ -17,7 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Test AmpyNode logic
-        run: node tests/ampynode.cjs
+        run: |
+          node tests/ampynode.cjs
+          node tests/ampypath.cjs
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -42,9 +44,9 @@ jobs:
         working-directory: android
         run: gradle --no-daemon :app:assembleDebug
       - name: Collect APK
-        run: cp android/app/build/outputs/apk/debug/app-debug.apk AmpyStudio-1.1.0-debug.apk
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk AmpyStudio-1.2.0-debug.apk
       - uses: actions/upload-artifact@v4
         with:
           name: AmpyStudio-Android
-          path: AmpyStudio-1.1.0-debug.apk
+          path: AmpyStudio-1.2.0-debug.apk
           if-no-files-found: error

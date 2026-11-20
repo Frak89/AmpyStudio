@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const code=fs.readFileSync(path.join(__dirname,'../src/engine.js'),'utf8');
+const {AmpyPath:P,Ampy:E}=new Function(code+'\nreturn {AmpyPath,Ampy};')();
+assert.match(P.path(P.preset('circle')),/ C/);
+assert.match(P.path(P.preset()),/ Z$/);
+const q=P.preset('rectangle');q[0].mode='fillet';q[0].radius=10;
+assert.ok(Math.abs(P.corners(q,true)[0].r-10)<1e-6);
+assert.match(P.path(q),/ A10 10/);q[0].radius=100;assert.ok(P.corners(q,true)[0].r<=27.45);
+assert.equal(P.corners(q,false)[0].r,0);assert.ok(!P.path(q,false).endsWith(' Z'));
+assert.equal(P.interpolate([[0,0],[10,10]],[[10,0],[20,10]],.5,false),'M5 0 L15 10');
+assert.equal(P.normalize({source:[{x:999,y:0},{x:0,y:5}]}).source[0].x,100);
+const o=E.make('path','test');const p={objects:[o],connections:[],duration:6};const svg=E.serialize(p);
+assert.ok(svg.includes('pathData'));assert.ok(svg.includes('<path d="M'));assert.ok(svg.includes('ampy:project'));
+console.log('AmpyPath geometry tests passed');
