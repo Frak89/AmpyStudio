@@ -18,7 +18,7 @@ android {
 tasks.register('syncStudioAssets', Copy) {
     from rootProject.file('../index.html')
     from rootProject.file('../viewer.html')
-    from rootProject.file('../examples') { into 'examples' }
+    from(rootProject.file('../examples')) { into 'examples' }
     into layout.buildDirectory.dir('generated/studioAssets')
 }
 tasks.named('preBuild').configure { dependsOn 'syncStudioAssets' }
